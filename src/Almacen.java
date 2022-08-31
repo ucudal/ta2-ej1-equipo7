@@ -78,7 +78,8 @@ public class Almacen implements IAlmacen {
 
     @Override
     public Boolean agregarStock(Comparable codProducto, Integer cantidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Producto producto = productos.buscar(codProducto).getDato();
+        producto.agregarCantidadStock(cantidad);
     }
 
     @Override
@@ -106,4 +107,18 @@ public class Almacen implements IAlmacen {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public void cargarAlmacen(String[] lineas){
+        for (String linea : lineas) {
+            String[] datos = linea.split(",");
+            Nodo<Producto> nodo = productos.buscar(datos[0]);
+            if (nodo.getEtiqueta() == datos[0]){
+                agregarStock(datos[0], Integer.parseInt(datos[3]));
+            }else{
+                Producto producto = new Producto(datos[0], datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
+                Nodo<Producto> nuevoNodo = new Nodo(producto.getCodProducto(), producto);
+                productos.insertar(nuevoNodo);
+            }
+            
+        }
+    }
 }
