@@ -8,19 +8,19 @@
  * @author juanc
  */
 public class Producto implements IProducto {
-    
+
     private Comparable codProducto;
     private Integer precio;
     private Integer stock;
     private String nombre;
-    
+
     public Producto(Comparable codProducto, Integer precio, Integer stock, String nombre){
         this.codProducto = codProducto;
         this.precio = precio;
         this.stock = stock;
         this.nombre = nombre;
     }
-    
+
     @Override
     public Comparable getCodProducto() {
         return this.codProducto;
@@ -48,7 +48,10 @@ public class Producto implements IProducto {
 
     @Override
     public void restarCantidadStock(Integer stock) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.stock -= stock;
+        if (this.stock < 0) {
+            this.stock = 0;
+        }
     }
 
     @Override
@@ -60,5 +63,5 @@ public class Producto implements IProducto {
     public void setNombre(String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

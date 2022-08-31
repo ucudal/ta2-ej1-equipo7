@@ -27,7 +27,7 @@ public interface ILista<T> {
     /**
      * Metodo encargado de imprimir en consola las claves de los nodos
      * contenidos en la lista.
-     * @return 
+     * @return
      */
     public String imprimir();
 
@@ -54,7 +54,8 @@ public interface ILista<T> {
      * @return Si tiene elementos o no.
      */
     public boolean esVacia();
-    
-    public void setPrimero( Nodo<T> unNodo);    
 
+    public void setPrimero( Nodo<T> unNodo);
+
+    public Nodo<T> getPrimero();
 }

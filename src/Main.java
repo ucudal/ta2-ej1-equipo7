@@ -3,9 +3,28 @@
  * @author abadie
  */
 public class Main {
-    
+
+    private static long vender(String rutaArchivo, Almacen almacen) {
+        String[] lineas = ManejadorArchivosGenerico.leerArchivo(rutaArchivo);
+
+        long valorStockInicial = almacen.obtenerValorStock();
+
+        for (String linea : lineas) {
+            String[] partes = linea.split(",");
+
+            String codProducto = partes[0];
+            int cantidad = Integer.parseInt(partes[1]);
+
+            almacen.restarStock(codProducto, cantidad);
+        }
+
+        long valorStockActual = almacen.obtenerValorStock();
+
+        return valorStockInicial - valorStockActual;
+    }
+
     public static void main(String[] args){
-        // TODO: 
+        // TODO:
         /**
          * Instanciar almacen
          * Agregar: productos y cantidades (altas.txt)
@@ -16,5 +35,5 @@ public class Main {
          **/
         System.err.println("TBD");
     }
-    
+
 }

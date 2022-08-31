@@ -8,12 +8,12 @@
  * @author juanc
  */
 public class Almacen implements IAlmacen {
-    
+
     private String direccion;
     private String telefono;
     private String nombre;
     private Lista<Producto> productos;
-    
+
     public Almacen(String direccion, String telefono, String nombre){
         this.direccion = direccion;
         this.telefono = telefono;
@@ -53,7 +53,12 @@ public class Almacen implements IAlmacen {
 
     @Override
     public long obtenerValorStock() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        long total = 0;
+        for (Nodo<T> nodo = prodcutos.getPrimero(); nodo != null; nodo = nodo.getSiguiente()) {
+            Producto producto = nodo.getDato();
+            total += producto.getStock() * producto.getPrecio();
+        }
+        return total;
     }
 
     @Override
@@ -83,12 +88,25 @@ public class Almacen implements IAlmacen {
 
     @Override
     public Integer restarStock(Comparable codProducto, Integer cantidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Producto prod = this.buscarPorCodigo(codProducto);
+
+        if (prod != null) {
+            prod.restarCantidadStock(cantidad);
+            return prod.getStock();
+        }
+
+        return 0;
     }
 
     @Override
     public Producto buscarPorCodigo(Comparable codProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Nodo<Producto> producto = this.productos.buscar(codProducto);
+
+        if (producto != null) {
+            return producto.getDato();
+        }
+
+        return null;
     }
 
     @Override
@@ -105,5 +123,5 @@ public class Almacen implements IAlmacen {
     public int cantidadProductos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

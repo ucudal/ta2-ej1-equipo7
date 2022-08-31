@@ -13,7 +13,7 @@ public class Lista<T> implements ILista<T> {
           primero = nodo;
       }else{
           Nodo<T> ultimo = primero;
-            while (ultimo.getSiguiente() != null) {                
+            while (ultimo.getSiguiente() != null) {
                 ultimo = ultimo.getSiguiente();
             }
             ultimo.setSiguiente(nodo);
@@ -41,7 +41,7 @@ public class Lista<T> implements ILista<T> {
             for (Nodo<T> anterior = primero; anterior.getSiguiente() != null; anterior = anterior.getSiguiente()){
                 Nodo<T> actual = anterior.getSiguiente();
                 if (actual.getEtiqueta().equals(clave)){
-                    
+
                 }
             }
         }*/
@@ -73,6 +73,8 @@ public class Lista<T> implements ILista<T> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-
-    
+    @Override
+    public Nodo<T> getPrimero() {
+        return primero;
+    }
 }
