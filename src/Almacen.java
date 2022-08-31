@@ -54,7 +54,7 @@ public class Almacen implements IAlmacen {
     @Override
     public long obtenerValorStock() {
         long total = 0;
-        for (Nodo<T> nodo = prodcutos.getPrimero(); nodo != null; nodo = nodo.getSiguiente()) {
+        for (Nodo<Producto> nodo = productos.getPrimero(); nodo != null; nodo = nodo.getSiguiente()) {
             Producto producto = nodo.getDato();
             total += producto.getStock() * producto.getPrecio();
         }
